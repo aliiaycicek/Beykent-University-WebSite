@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, Search, Share2 } from 'lucide-react'
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -63,106 +63,97 @@ export default function Home() {
           />
         </div>
         
-        {/* Header embedded directly into Hero */}
-        <div className="absolute top-0 left-0 w-full z-50">
+        {/* Header embedded directly into Hero - Moved up */}
+        <div className="absolute -top-4 left-0 w-full z-50">
           {/* Top Bar */}
-          <div className="text-white py-1.5 relative">
+          <div className="text-white py-2 relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-end items-center space-x-3">
-                {/* Header Buttons - Scaled down */}
-                <div className="flex items-center space-x-3">
-                  <Link href="/aday-ogrenci" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-xs uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '160px', height: '40px', fontFamily: 'Roboto, sans-serif'}}>
-                    <Image src="/images/homepage-icons/user-icon.svg" alt="User" width={12} height={12} className="mr-1.5" />
+              <div className="flex justify-end items-center space-x-4">
+                {/* Header Buttons - Restored to proper size */}
+                <div className="flex items-center space-x-4">
+                  <Link href="/aday-ogrenci" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-sm uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '180px', height: '45px', fontFamily: 'Roboto, sans-serif'}}>
+                    <Image src="/images/homepage-icons/user-icon.svg" alt="User" width={16} height={16} className="mr-2" />
                     ADAY ÖĞRENCİ
                   </Link>
-                  <Link href="/mezun" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-xs uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '160px', height: '40px', fontFamily: 'Roboto, sans-serif'}}>
-                    <Image src="/images/homepage-icons/graduation-cap-icon.svg" alt="Graduation" width={12} height={12} className="mr-1.5" />
+                  <Link href="/mezun" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-sm uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '180px', height: '45px', fontFamily: 'Roboto, sans-serif'}}>
+                    <Image src="/images/homepage-icons/graduation-cap-icon.svg" alt="Graduation" width={16} height={16} className="mr-2" />
                     MEZUN
                   </Link>
-                  <Link href="/hizli-menu" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-xs uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '160px', height: '40px', fontFamily: 'Roboto, sans-serif'}}>
-                    <Image src="/images/homepage-icons/menu-icon.svg" alt="Menu" width={12} height={12} className="mr-1.5" />
+                  <Link href="/hizli-menu" className="bg-transparent border-2 border-white rounded-2xl flex items-center justify-center text-[#3D2673] font-bold text-sm uppercase hover:bg-white hover:text-[#482D7E] transition-colors" style={{width: '180px', height: '45px', fontFamily: 'Roboto, sans-serif'}}>
+                    <Image src="/images/homepage-icons/menu-icon.svg" alt="Menu" width={16} height={16} className="mr-2" />
                     HIZLI MENÜ
                   </Link>
                 </div>
                 
-                {/* Theme Toggle Buttons - Scaled down */}
-                <div className="flex items-center space-x-1">
-                  <button className="w-6 h-6 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center text-xs font-medium text-white" style={{fontFamily: 'Roboto, sans-serif'}}>
+                {/* Theme Toggle Buttons - Restored to proper size */}
+                <div className="flex items-center space-x-2">
+                  <button className="w-8 h-8 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center text-sm font-medium text-white" style={{fontFamily: 'Roboto, sans-serif'}}>
                     Mod
                   </button>
-                  <button className="w-6 h-6 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center">
-                    <Image src="/images/homepage-icons/sun-icon.svg" alt="Light mode" width={12} height={12} className="filter brightness-0 invert" />
+                  <button className="w-8 h-8 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center">
+                    <Image src="/images/homepage-icons/sun-icon.svg" alt="Light mode" width={16} height={16} className="filter brightness-0 invert" />
                   </button>
-                  <button className="w-6 h-6 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center">
-                    <Image src="/images/homepage-icons/moon-icon.svg" alt="Dark mode" width={12} height={12} className="filter brightness-0 invert" />
+                  <button className="w-8 h-8 rounded bg-transparent border border-white/30 hover:bg-white/20 transition-colors flex items-center justify-center">
+                    <Image src="/images/homepage-icons/moon-icon.svg" alt="Dark mode" width={16} height={16} className="filter brightness-0 invert" />
                   </button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Language Selector - Scaled down */}
-          <div className="py-1.5">
+          {/* Language Selector - Restored to proper size */}
+          <div className="py-2">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-end">
-                <div className="flex items-center space-x-2">
-                  <button className="text-white text-xs hover:text-[#F4C400] transition-colors" style={{fontFamily: 'Roboto, sans-serif'}}>TR</button>
+                <div className="flex items-center space-x-3">
+                  <button className="text-white text-sm hover:text-[#F4C400] transition-colors" style={{fontFamily: 'Roboto, sans-serif'}}>TR</button>
                   <span className="text-white/50">|</span>
-                  <button className="text-white text-xs hover:text-[#F4C400] transition-colors" style={{fontFamily: 'Roboto, sans-serif'}}>EN</button>
+                  <button className="text-white text-sm hover:text-[#F4C400] transition-colors" style={{fontFamily: 'Roboto, sans-serif'}}>EN</button>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Main Header - Scaled down */}
-          <div className="bg-white/95 backdrop-blur-sm py-2">
+          {/* Main Header - Transparent background, reduced padding */}
+          <div className="bg-transparent py-2">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between">
-                {/* Logo and University Name - Scaled down */}
+                {/* Logo and University Name - White text for visibility */}
                 <div className="flex items-center">
                   <Image
                     src="/images/logos/beykent-logo.svg"
                     alt="İstanbul Beykent Üniversitesi"
-                    width={40}
-                    height={40}
-                    className="h-8 w-8"
+                    width={60}
+                    height={60}
+                    className="h-12 w-12"
                   />
-                  <div className="ml-2">
-                    <div className="text-[#3D2673] font-bold text-xs leading-tight" style={{fontFamily: 'Roboto, sans-serif'}}>
+                  <div className="ml-3">
+                    <div className="text-white font-bold text-base leading-tight" style={{fontFamily: 'Roboto, sans-serif'}}>
                       İSTANBUL BEYKENT<br />
                       ÜNİVERSİTESİ
                     </div>
                   </div>
                 </div>
 
-                {/* Desktop Navigation - Scaled down */}
-                <nav className="hidden lg:flex items-center space-x-4">
-                  <div className="relative group">
-                    <button className="text-[#3D2673] text-xs font-medium hover:text-[#F4C400] transition-colors flex items-center" style={{fontFamily: 'Roboto, sans-serif'}}>
-                      Beykent Hakkında
-                      <svg className="ml-1 w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </button>
-                  </div>
-
+                {/* Desktop Navigation - White text for visibility */}
+                <nav className="hidden lg:flex items-center space-x-8">
                   {navigationItems.map((item) => (
                     <div key={item.name} className="relative group">
                       <button 
-                        className="text-[#3D2673] text-xs font-medium hover:text-[#F4C400] transition-colors flex items-center"
+                        className="text-white text-sm font-medium hover:text-[#F4C400] transition-colors flex items-center"
                         style={{fontFamily: 'Roboto, sans-serif'}}
                         onMouseEnter={() => setHoveredMenu(item.name)}
                         onMouseLeave={() => setHoveredMenu(null)}
                       >
                         {item.name}
                         {item.hasDropdown && (
-                          <ChevronDown className="ml-1 h-3 w-3" />
+                          <ChevronDown className="ml-1 h-4 w-4" />
                         )}
                       </button>
 
                       {item.hasDropdown && hoveredMenu === item.name && (
                         <div 
-                          className="absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
+                          className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
                           onMouseEnter={() => setHoveredMenu(item.name)}
                           onMouseLeave={() => setHoveredMenu(null)}
                         >
@@ -171,7 +162,7 @@ export default function Home() {
                               <Link
                                 key={dropdownItem.name}
                                 href={dropdownItem.href}
-                                className="block px-4 py-2 text-xs text-gray-700 hover:bg-[#F4C400]/10 hover:text-[#3D2673] transition-colors"
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#F4C400]/10 hover:text-[#3D2673] transition-colors"
                                 style={{fontFamily: 'Roboto, sans-serif'}}
                               >
                                 {dropdownItem.name}
@@ -184,21 +175,13 @@ export default function Home() {
                   ))}
                 </nav>
 
-                {/* Search and Share Icons - Updated with new SVGs */}
-                <div className="flex items-center space-x-2">
-                  {/* Search Icon - New SVG */}
-                  <button className="p-1">
-                    <svg width="35" height="32" viewBox="0 0 47 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="47" height="44" rx="16" fill="#F4C400" fillOpacity="0.15"/>
-                      <path d="M29.8848 27.8426L35.825 33.8258M33.0797 20.0992C33.0797 26.164 28.1632 31.0805 22.0984 31.0805C16.0337 31.0805 11.1172 26.164 11.1172 20.0992C11.1172 14.0344 16.0337 9.11798 22.0984 9.11798C28.1632 9.11798 33.0797 14.0344 33.0797 20.0992Z" stroke="#3D2673" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                {/* Search and Share Icons - White for visibility */}
+                <div className="flex items-center space-x-4">
+                  <button className="text-white hover:text-[#F4C400] transition-colors">
+                    <Search className="h-6 w-6" />
                   </button>
-                  
-                  {/* Share Icon - New SVG */}
-                  <button className="p-1">
-                    <svg width="25" height="25" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M18.5478 7.66666C18.5478 5.19289 20.5623 3.1875 23.0473 3.1875C25.5323 3.1875 27.5469 5.19289 27.5469 7.66666C27.5469 10.1404 25.5323 12.1458 23.0473 12.1458C21.7925 12.1458 20.6585 11.6343 19.8433 10.8112L13.6145 15.0521C13.672 15.3384 13.7022 15.634 13.7022 15.9359C13.7022 16.5339 13.584 17.1055 13.3698 17.628L20.1997 22.1153C20.9749 21.4841 21.9667 21.1041 23.0473 21.1041C25.5323 21.1041 27.5469 23.1095 27.5469 25.5834C27.5469 28.0571 25.5323 30.0625 23.0473 30.0625C20.5623 30.0625 18.5478 28.0571 18.5478 25.5834C18.5478 24.9354 18.6865 24.3186 18.9357 23.7618L12.161 19.3108C11.3708 19.9975 10.3356 20.415 9.20265 20.415C6.71763 20.415 4.70312 18.4096 4.70312 15.9359C4.70312 13.4621 6.71763 11.4567 9.20265 11.4567C10.6316 11.4567 11.9036 12.1197 12.7273 13.1516L18.764 9.04144C18.6236 8.60764 18.5478 8.1454 18.5478 7.66666Z" fill="#3D2673"/>
-                    </svg>
+                  <button className="text-white hover:text-[#F4C400] transition-colors">
+                    <Share2 className="h-6 w-6" />
                   </button>
                 </div>
 
@@ -243,7 +226,7 @@ export default function Home() {
             {/* Main heading - BOLD and smaller */}
             <h1 className="mb-4">
               <span className="block text-[24px] leading-[24px] text-[#3D2673] font-bold" style={{fontFamily: 'Roboto, sans-serif'}}>
-                Geleceğini Beykent'te
+                Geleceğini Beykent&apos;te
               </span>
               <span className="block text-[24px] leading-[24px] text-[#3D2673] font-bold" style={{fontFamily: 'Roboto, sans-serif'}}>
                 İnşa Et.
@@ -262,7 +245,7 @@ export default function Home() {
                 className="bg-[#3D2673] text-white text-[6px] py-1 px-3 rounded-full transition-all duration-300 hover:bg-[#482D7E] hover:shadow-lg"
                 style={{fontFamily: 'Roboto, sans-serif'}}
               >
-                BEYKENT'İ KEŞFET
+                BEYKENT&apos;İ KEŞFET
               </button>
               
               <button 
