@@ -203,7 +203,7 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
     }, 300);
   };
 
-  // Context'ten gelen isAkademikHovered değişikliklerini dinle
+  // Context'ten gelen isAkademikHovered değişikliklerini dinleee
   useEffect(() => {
     if (isAkademikHovered) {
       setShowItems(true);
