@@ -18,30 +18,32 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { isAkademikHovered, setIsAkademikHovered } = useAkademikHover();
 
-  // Akademik dropdown items organized as per original Figma design - restored to full size
+  // Akademik dropdown items - Panel içinde kalacak şekilde düzenlendi (684px genişlik)
   const akademikItems = [
-    // First row
-    { name: 'AKADEMİK KADRO', position: { left: 601, top: 240 } },
-    { name: 'AKADEMİK TAKVİM', position: { left: 775, top: 239 } },
-    { name: 'AKTS KATALOĞU', position: { left: 949, top: 238 } },
-    { name: 'TEKNOLOJİ TRANSFER OFİSİ', position: { left: 1131, top: 234 } },
+    // First row - Panel içinde (250px beyaz panel + 434px sarı alan)
+    { name: 'AKADEMİK KADRO', position: { left: 280, top: 20 } },
+    { name: 'AKADEMİK TAKVİM', position: { left: 450, top: 20 } },
+    { name: 'AKTS KATALOĞU', position: { left: 580, top: 20 } },
 
     // Second row
-    { name: 'FAKÜLTELER', position: { left: 601, top: 306 } },
-    { name: 'KÜTÜPHANE', position: { left: 780, top: 313 } },
-    { name: 'YÜKSEKOKULLAR', position: { left: 949, top: 313 } },
-    { name: 'KURALLAR VE KOMİSYONLAR', position: { left: 1131, top: 306 } },
+    { name: 'FAKÜLTELER', position: { left: 280, top: 60 } },
+    { name: 'KÜTÜPHANE', position: { left: 450, top: 60 } },
+    { name: 'YÜKSEKOKULLAR', position: { left: 580, top: 60 } },
 
     // Third row
-    { name: 'TÜM PROGRAMLAR', position: { left: 601, top: 380 } },
-    { name: 'ENSTİTÜLER', position: { left: 780, top: 380 } },
-    { name: 'ENDÜSTRİYEL HİZMET', position: { left: 949, top: 380 } },
-    { name: 'SÜREKLİ EĞİTİM MERKEZİ', position: { left: 1131, top: 380 } },
+    { name: 'TÜM PROGRAMLAR', position: { left: 280, top: 100 } },
+    { name: 'ENSTİTÜLER', position: { left: 450, top: 100 } },
+    { name: 'ENDÜSTRİYEL HİZMET', position: { left: 580, top: 100 } },
 
     // Fourth row
+    { name: 'KURALLAR VE KOMİSYONLAR', position: { left: 280, top: 140 } },
+    { name: 'SÜREKLİ EĞİTİM MERKEZİ', position: { left: 450, top: 140 } },
+    { name: 'TEKNOLOJİ TRANSFER OFİSİ', position: { left: 580, top: 140 } },
+
+    // Fifth row
     {
       name: 'ÖĞRETİM ÜYESİ YETİŞTİRME VE GELİŞTİRME PROGRAMI',
-      position: { left: 601, top: 451 },
+      position: { left: 280, top: 180 },
     },
   ];
 
@@ -250,7 +252,8 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
           style={{
             width: '684px', // Orijinal boyut
             height: '275px', // Orijinal boyut
-            left: '0px',
+            left: '50%',
+            transform: 'translateX(-50%)', // Panel genişliğinin yarısı kadar sola kaydır
             top: '100%',
           }}
           onMouseEnter={handlePanelMouseEnter}
@@ -361,8 +364,8 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
                 }
               `}
               style={{
-                left: `${item.position.left - 250}px`, // Orijinal hesaplama
-                top: `${item.position.top - 100}px`, // Orijinal hesaplama
+                left: `${item.position.left}px`, // Panel içinde direkt pozisyon
+                top: `${item.position.top}px`, // Panel içinde direkt pozisyon
                 fontFamily: 'Roboto',
                 fontStyle: 'normal',
                 fontWeight: '700',
