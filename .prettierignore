@@ -50,3 +50,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# JSON animation files
+public/images/figma/graduation-animation.json
