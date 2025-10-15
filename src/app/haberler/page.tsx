@@ -1,21 +1,24 @@
 'use client';
 
 import React from 'react';
-import HeaderSection from '@/components/features/HeaderSection';
+import DefaultHeader from '@/components/features/DefaultHeader';
 import FooterSection from '@/components/features/FooterSection';
 import NewsPageContent from '@/components/pages/NewsPageContent';
+import { AkademikHoverProvider } from '@/components/context/AkademikHoverContext';
 
 export default function NewsPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <HeaderSection />
+    <AkademikHoverProvider>
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <DefaultHeader />
 
-      {/* News Page Content */}
-      <NewsPageContent />
+        {/* News Page Content */}
+        <NewsPageContent />
 
-      {/* Footer */}
-      <FooterSection />
-    </div>
+        {/* Footer */}
+        <FooterSection />
+      </div>
+    </AkademikHoverProvider>
   );
 }

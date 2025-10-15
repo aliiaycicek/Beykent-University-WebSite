@@ -1,6 +1,7 @@
 import AdayOgrenciPageContent from '@/components/pages/AdayOgrenciPageContent';
-import HeaderSection from '@/components/features/HeaderSection';
+import DefaultHeader from '@/components/features/DefaultHeader';
 import FooterSection from '@/components/features/FooterSection';
+import { AkademikHoverProvider } from '@/components/context/AkademikHoverContext';
 
 export const metadata = {
   title: 'Aday Öğrenci - İstanbul Beykent Üniversitesi',
@@ -10,15 +11,17 @@ export const metadata = {
 
 export default function AdayOgrenciPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <HeaderSection />
+    <AkademikHoverProvider>
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <DefaultHeader />
 
-      {/* Aday Öğrenci Page Content */}
-      <AdayOgrenciPageContent />
+        {/* Aday Öğrenci Page Content */}
+        <AdayOgrenciPageContent />
 
-      {/* Footer */}
-      <FooterSection />
-    </div>
+        {/* Footer */}
+        <FooterSection />
+      </div>
+    </AkademikHoverProvider>
   );
 }

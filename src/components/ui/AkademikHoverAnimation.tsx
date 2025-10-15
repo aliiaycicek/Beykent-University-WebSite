@@ -47,110 +47,93 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
     },
   ];
 
-  // Lottie animasyon data'sı - Figma'dan indirilen graduation animasyonu
+  // Lottie animasyon data'sı - Fallback animasyon
   const [graduationAnimation, setGraduationAnimation] = useState<object | null>(
-    null
-  );
-
-  // Lottie animasyonunu yükle
-  useEffect(() => {
-    const loadAnimation = async () => {
-      try {
-        const response = await fetch('/images/figma/graduation-animation.json');
-        const animationData = await response.json();
-        setGraduationAnimation(animationData);
-      } catch (error) {
-        console.error('Error loading Lottie animation:', error);
-        // Fallback animasyon
-        setGraduationAnimation({
-          v: '5.7.4',
-          fr: 30,
-          ip: 0,
-          op: 90,
-          w: 150,
-          h: 150,
-          nm: 'Graduation Animation',
+    {
+      v: '5.7.4',
+      fr: 30,
+      ip: 0,
+      op: 90,
+      w: 150,
+      h: 150,
+      nm: 'Graduation Animation',
+      ddd: 0,
+      assets: [],
+      layers: [
+        {
           ddd: 0,
-          assets: [],
-          layers: [
-            {
-              ddd: 0,
-              ind: 1,
-              ty: 4,
-              nm: 'Computer Screen',
-              sr: 1,
-              ks: {
-                o: { a: 0, k: 100 },
-                r: {
-                  a: 1,
-                  k: [
-                    {
-                      i: { x: [0.833], y: [0.833] },
-                      o: { x: [0.167], y: [0.167] },
-                      t: 0,
-                      s: [0],
-                    },
-                    {
-                      i: { x: [0.833], y: [0.833] },
-                      o: { x: [0.167], y: [0.167] },
-                      t: 45,
-                      s: [10],
-                    },
-                    { t: 90, s: [0] },
-                  ],
-                },
-                p: { a: 0, k: [75, 75, 0] },
-                a: { a: 0, k: [0, 0, 0] },
-                s: {
-                  a: 1,
-                  k: [
-                    {
-                      i: { x: [0.833, 0.833, 0.833], y: [0.833, 0.833, 0.833] },
-                      o: { x: [0.167, 0.167, 0.167], y: [0.167, 0.167, 0.167] },
-                      t: 0,
-                      s: [80, 80, 100],
-                    },
-                    {
-                      i: { x: [0.833, 0.833, 0.833], y: [0.833, 0.833, 0.833] },
-                      o: { x: [0.167, 0.167, 0.167], y: [0.167, 0.167, 0.167] },
-                      t: 45,
-                      s: [120, 120, 100],
-                    },
-                    { t: 90, s: [80, 80, 100] },
-                  ],
-                },
-              },
-              ao: 0,
-              shapes: [
+          ind: 1,
+          ty: 4,
+          nm: 'Computer Screen',
+          sr: 1,
+          ks: {
+            o: { a: 0, k: 100 },
+            r: {
+              a: 1,
+              k: [
                 {
-                  ty: 'gr',
-                  it: [
-                    {
-                      ty: 'rc',
-                      d: 1,
-                      s: { a: 0, k: [60, 40] },
-                      p: { a: 0, k: [0, 0] },
-                      r: { a: 0, k: 5 },
-                    },
-                    {
-                      ty: 'fl',
-                      c: { a: 0, k: [0.239, 0.153, 0.451, 1] },
-                      o: { a: 0, k: 100 },
-                    },
-                  ],
+                  i: { x: [0.833], y: [0.833] },
+                  o: { x: [0.167], y: [0.167] },
+                  t: 0,
+                  s: [0],
+                },
+                {
+                  i: { x: [0.833], y: [0.833] },
+                  o: { x: [0.167], y: [0.167] },
+                  t: 45,
+                  s: [10],
+                },
+                { t: 90, s: [0] },
+              ],
+            },
+            p: { a: 0, k: [75, 75, 0] },
+            a: { a: 0, k: [0, 0, 0] },
+            s: {
+              a: 1,
+              k: [
+                {
+                  i: { x: [0.833, 0.833, 0.833], y: [0.833, 0.833, 0.833] },
+                  o: { x: [0.167, 0.167, 0.167], y: [0.167, 0.167, 0.167] },
+                  t: 0,
+                  s: [80, 80, 100],
+                },
+                {
+                  i: { x: [0.833, 0.833, 0.833], y: [0.833, 0.833, 0.833] },
+                  o: { x: [0.167, 0.167, 0.167], y: [0.167, 0.167, 0.167] },
+                  t: 45,
+                  s: [120, 120, 100],
+                },
+                { t: 90, s: [80, 80, 100] },
+              ],
+            },
+          },
+          ao: 0,
+          shapes: [
+            {
+              ty: 'gr',
+              it: [
+                {
+                  ty: 'rc',
+                  d: 1,
+                  s: { a: 0, k: [60, 40] },
+                  p: { a: 0, k: [0, 0] },
+                  r: { a: 0, k: 5 },
+                },
+                {
+                  ty: 'fl',
+                  c: { a: 0, k: [0.239, 0.153, 0.451, 1] },
+                  o: { a: 0, k: 100 },
                 },
               ],
-              ip: 0,
-              op: 90,
-              st: 0,
             },
           ],
-        });
-      }
-    };
-
-    loadAnimation();
-  }, []);
+          ip: 0,
+          op: 90,
+          st: 0,
+        },
+      ],
+    }
+  );
 
   const handleMouseEnter = () => {
     setIsAkademikHovered(true);
