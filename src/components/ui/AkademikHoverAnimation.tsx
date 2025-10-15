@@ -248,10 +248,10 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
         <div
           className="absolute z-50 transition-all duration-300 hidden lg:block"
           style={{
-            width: '889px', // %30 büyütülmüş (684 * 1.3)
-            height: '358px', // %30 büyütülmüş (275 * 1.3)
-            left: '150px',
-            top: '164px',
+            width: '684px', // Orijinal boyut
+            height: '275px', // Orijinal boyut
+            left: '0px',
+            top: '100%',
           }}
           onMouseEnter={handlePanelMouseEnter}
           onMouseLeave={handlePanelMouseLeave}
@@ -261,7 +261,7 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
             className="absolute"
             style={{
               width: 'calc(100% - 6px)',
-              height: '358px', // %30 büyütülmüş (275 * 1.3)
+              height: '275px', // Orijinal boyut
               left: '6px',
               top: '0px',
               background: '#FFDD00',
@@ -275,8 +275,8 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
           <div
             className="absolute"
             style={{
-              width: '325px', // %30 büyütülmüş (250 * 1.3)
-              height: '358px', // %30 büyütülmüş (275 * 1.3)
+              width: '250px', // Orijinal boyut
+              height: '275px', // Orijinal boyut
               left: '0px',
               top: '0px',
               background: '#FFFFFF',
@@ -290,10 +290,10 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
               <div
                 className="absolute"
                 style={{
-                  width: '117px', // %30 büyütülmüş (90 * 1.3)
-                  height: '117px', // %30 büyütülmüş (90 * 1.3)
-                  left: '104px', // %30 büyütülmüş (80 * 1.3)
-                  top: '20px', // %30 büyütülmüş (15 * 1.3)
+                  width: '90px', // Orijinal boyut
+                  height: '90px', // Orijinal boyut
+                  left: '80px', // Orijinal pozisyon
+                  top: '15px', // Orijinal pozisyon
                 }}
               >
                 <Lottie
@@ -309,14 +309,14 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
             <div
               className="absolute"
               style={{
-                width: '156px', // %30 büyütülmüş (120 * 1.3)
-                height: '36px', // %30 büyütülmüş (28 * 1.3)
-                left: '25px', // %30 büyütülmüş (19 * 1.3)
-                top: '161px', // %30 büyütülmüş (124 * 1.3)
+                width: '120px', // Orijinal boyut
+                height: '28px', // Orijinal boyut
+                left: '19px', // Orijinal pozisyon
+                top: '124px', // Orijinal pozisyon
                 fontFamily: 'Roboto',
                 fontStyle: 'normal',
                 fontWeight: '700',
-                fontSize: '31px', // %30 büyütülmüş (24 * 1.3)
+                fontSize: '24px', // Orijinal boyut
                 lineHeight: '1.171875em',
                 textAlign: 'center',
                 textTransform: 'uppercase',
@@ -330,14 +330,14 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
             <div
               className="absolute"
               style={{
-                width: '230px', // %30 büyütülmüş (177 * 1.3)
-                height: '79px', // %30 büyütülmüş (61 * 1.3)
-                left: '25px', // %30 büyütülmüş (19 * 1.3)
-                top: '246px', // %30 büyütülmüş (189 * 1.3)
+                width: '177px', // Orijinal boyut
+                height: '61px', // Orijinal boyut
+                left: '19px', // Orijinal pozisyon
+                top: '189px', // Orijinal pozisyon
                 fontFamily: 'Roboto',
                 fontStyle: 'normal',
                 fontWeight: '500',
-                fontSize: '13px', // %30 büyütülmüş (10 * 1.3)
+                fontSize: '10px', // Orijinal boyut
                 lineHeight: '1.171875em',
                 textTransform: 'uppercase',
                 color: 'rgba(0, 0, 0, 0.8)',
@@ -361,30 +361,30 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
                 }
               `}
               style={{
-                left: `${(item.position.left - 150) * 0.78}px`, // %30 büyütülmüş (0.6 * 1.3)
-                top: `${(item.position.top - 164) * 0.78}px`, // %30 büyütülmüş (0.6 * 1.3)
+                left: `${item.position.left - 250}px`, // Orijinal hesaplama
+                top: `${item.position.top - 100}px`, // Orijinal hesaplama
                 fontFamily: 'Roboto',
                 fontStyle: 'normal',
                 fontWeight: '700',
                 fontSize:
                   item.name ===
                   'ÖĞRETİM ÜYESİ YETİŞTİRME VE GELİŞTİRME PROGRAMI'
-                    ? '10px'
-                    : '13px', // %30 büyütülmüş
+                    ? '8px'
+                    : '10px', // Orijinal boyut
                 lineHeight:
                   item.name ===
                   'ÖĞRETİM ÜYESİ YETİŞTİRME VE GELİŞTİRME PROGRAMI'
-                    ? '13px'
-                    : '14px', // %30 büyütülmüş
+                    ? '10px'
+                    : '11px', // Orijinal boyut
                 textTransform: 'uppercase',
                 color: '#000000',
                 transitionDelay: `${index * 100}ms`,
                 maxWidth:
                   item.name === 'TEKNOLOJİ TRANSFER OFİSİ'
-                    ? '116px' // %30 büyütülmüş (89 * 1.3)
+                    ? '89px' // Orijinal boyut
                     : item.name ===
                         'ÖĞRETİM ÜYESİ YETİŞTİRME VE GELİŞTİRME PROGRAMI'
-                      ? '122px' // %30 büyütülmüş (94 * 1.3)
+                      ? '94px' // Orijinal boyut
                       : 'auto',
               }}
               onClick={() => {
@@ -397,10 +397,10 @@ const AkademikHoverAnimation: React.FC<AkademikHoverAnimationProps> = ({
               <div
                 className="absolute"
                 style={{
-                  width: '9px', // %30 büyütülmüş (7 * 1.3)
-                  height: '9px', // %30 büyütülmüş (7 * 1.3)
-                  left: '-16px', // %30 büyütülmüş (-12 * 1.3)
-                  top: '3px', // %30 büyütülmüş (2 * 1.3)
+                  width: '7px', // Orijinal boyut
+                  height: '7px', // Orijinal boyut
+                  left: '-12px', // Orijinal pozisyon
+                  top: '2px', // Orijinal pozisyon
                   background: '#3D2673',
                   borderRadius: '50%',
                 }}
