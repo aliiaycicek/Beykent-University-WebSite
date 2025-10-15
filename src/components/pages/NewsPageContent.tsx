@@ -2,23 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { newsService } from '@/services/newsService';
-
-interface News {
-  id: number;
-  title: string;
-  summary: string;
-  content: string;
-  imageUrl: string;
-  category: string;
-  publishDate: string;
-  author: string;
-  isActive: boolean;
-  slug: string;
-}
+import { newsService, NewsItem } from '@/services/newsService';
 
 const NewsPageContent: React.FC = () => {
-  const [news, setNews] = useState<News[]>([]);
+  const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -81,12 +68,16 @@ const NewsPageContent: React.FC = () => {
   const totalPages = Math.ceil(filteredNews.length / newsPerPage);
 
   const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('tr-TR', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('tr-TR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      });
+    } catch {
+      return dateString;
+    }
   };
 
   return (
@@ -189,7 +180,7 @@ const NewsPageContent: React.FC = () => {
                   {/* Image Container */}
                   <div className="relative h-64 overflow-hidden">
                     <Image
-                      src={item.imageUrl || '/images/news/news-card-1.jpg'}
+                      src={item.photo || '/images/news/news-card-1.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
@@ -237,7 +228,7 @@ const NewsPageContent: React.FC = () => {
                         />
                       </svg>
                       <span className="text-[13px] font-semibold tracking-[0.04em] uppercase">
-                        {formatDate(item.publishDate)}
+                        {formatDate(item.date)}
                       </span>
                     </div>
                   </div>
@@ -333,7 +324,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
+                      src={item.photo || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -347,7 +338,7 @@ const NewsPageContent: React.FC = () => {
                       {item.title}
                     </h3>
                     <span className="text-[13px] font-semibold tracking-[0.04em] uppercase text-[#6D757F]">
-                      {formatDate(item.publishDate)}
+                      {formatDate(item.date)}
                     </span>
                   </div>
                 </div>
@@ -371,7 +362,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
+                      src={item.photo || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -385,7 +376,7 @@ const NewsPageContent: React.FC = () => {
                       {item.title}
                     </h3>
                     <span className="text-[13px] font-semibold tracking-[0.04em] uppercase text-[#6D757F]">
-                      {formatDate(item.publishDate)}
+                      {formatDate(item.date)}
                     </span>
                   </div>
                 </div>
@@ -409,7 +400,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
+                      src={item.photo || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -423,7 +414,7 @@ const NewsPageContent: React.FC = () => {
                       {item.title}
                     </h3>
                     <span className="text-[13px] font-semibold tracking-[0.04em] uppercase text-[#6D757F]">
-                      {formatDate(item.publishDate)}
+                      {formatDate(item.date)}
                     </span>
                   </div>
                 </div>
