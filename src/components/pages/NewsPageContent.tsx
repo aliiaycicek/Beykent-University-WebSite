@@ -1,12 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { newsService, NewsItem } from '@/services/newsService';
+
+interface NewsItem {
+  id: string;
+  title: string;
+  description: string;
+  photo: string;
+  category: string;
+  date: string;
+  slug: string;
+}
 
 const NewsPageContent: React.FC = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const newsPerPage = 6;
@@ -40,22 +47,98 @@ const NewsPageContent: React.FC = () => {
     },
   ];
 
-  useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        setLoading(true);
-        const data = await newsService.getActiveNews();
-        setNews(data);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-        setNews([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Mock statik haberler
+  const mockNews: NewsItem[] = [
+    {
+      id: '1',
+      title:
+        'İstanbul Beykent Üniversitesi ile Azerbaycan Üniversitesi arasında iş birliği anlaşması imzalandı',
+      description:
+        'İki üniversite arasında akademik ve bilimsel iş birliği protokolü imzalandı.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'akademi',
+      date: '2024-10-15',
+      slug: 'azerbaycan-universitesi-isbirligi',
+    },
+    {
+      id: '2',
+      title: 'Yapay Zeka ve Makine Öğrenmesi Konferansı Düzenlendi',
+      description:
+        'Üniversitemizde yapay zeka alanında önemli bir konferans gerçekleştirildi.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'teknoloji',
+      date: '2024-10-14',
+      slug: 'yapay-zeka-konferansi',
+    },
+    {
+      id: '3',
+      title: 'Öğrencilerimiz Ulusal Bilim Olimpiyatlarında Başarı Kazandı',
+      description:
+        'Beykent Üniversitesi öğrencileri bilim olimpiyatlarında derece aldı.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'bilim',
+      date: '2024-10-13',
+      slug: 'bilim-olimpiyatlari-basari',
+    },
+    {
+      id: '4',
+      title: 'Spor Bilimleri Fakültesi Yeni Tesislerini Açtı',
+      description: 'Modern spor tesisleri öğrencilerin hizmetine sunuldu.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'spor',
+      date: '2024-10-12',
+      slug: 'spor-tesisleri-acildi',
+    },
+    {
+      id: '5',
+      title: 'Sağlık Bilimleri Fakültesi Ücretsiz Sağlık Taraması Düzenledi',
+      description:
+        'Fakültemiz öğrencileri ve personeli için sağlık taraması yapıldı.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'saglik',
+      date: '2024-10-11',
+      slug: 'saglik-taramasi',
+    },
+    {
+      id: '6',
+      title: 'Güzel Sanatlar Fakültesi Yıl Sonu Sergisi Açıldı',
+      description: 'Öğrencilerimizin eserleri sergileniyor.',
+      photo: '/images/news/news-card-1.jpg',
+      category: 'sanat',
+      date: '2024-10-10',
+      slug: 'sanat-sergisi',
+    },
+    {
+      id: '7',
+      title: 'Üniversitemiz Akademisyenlerinden Doç. Dr. Gülay Tamer Ödül Aldı',
+      description: 'Akademisyenimiz ulusal düzeyde ödüle layık görüldü.',
+      photo: '/images/news/recent-post-02.jpg',
+      category: 'akademi',
+      date: '2024-10-09',
+      slug: 'akademisyen-odul',
+    },
+    {
+      id: '8',
+      title:
+        'Hemşirelikte Güncel Bilgiler ve Geleceğe Yönelik Yaklaşımlar Semineri',
+      description: 'Sağlık Bilimleri Fakültesi önemli bir seminer düzenledi.',
+      photo: '/images/news/recent-post-02.jpg',
+      category: 'saglik',
+      date: '2024-10-08',
+      slug: 'hemsirelik-semineri',
+    },
+    {
+      id: '9',
+      title: 'Teknoloji Zirvesi 2024 Beykent Üniversitesinde',
+      description: 'Teknoloji alanında önemli isimler üniversitemizde buluştu.',
+      photo: '/images/news/recent-post-02.jpg',
+      category: 'teknoloji',
+      date: '2024-10-07',
+      slug: 'teknoloji-zirvesi',
+    },
+  ];
 
-    fetchNews();
-  }, []);
+  const news = mockNews;
 
   const filteredNews =
     selectedCategory === 'all'
@@ -148,11 +231,7 @@ const NewsPageContent: React.FC = () => {
 
       {/* News Grid */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {loading ? (
-          <div className="flex justify-center items-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3D2673]"></div>
-          </div>
-        ) : currentNews.length === 0 ? (
+        {currentNews.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-600 text-lg">
               Henüz haber bulunmamaktadır.
