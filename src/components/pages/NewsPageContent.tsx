@@ -189,7 +189,7 @@ const NewsPageContent: React.FC = () => {
                   {/* Image Container */}
                   <div className="relative h-64 overflow-hidden">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-1.jpg'}
+                      src={item.imageUrl || '/images/news/news-card-1.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
@@ -333,7 +333,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-1.jpg'}
+                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -371,7 +371,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-2.jpg'}
+                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
@@ -409,7 +409,7 @@ const NewsPageContent: React.FC = () => {
                 <div key={item.id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden flex-shrink-0">
                     <Image
-                      src={item.imageUrl || '/images/news/recent-post-3.jpg'}
+                      src={item.imageUrl || '/images/news/recent-post-02.jpg'}
                       alt={item.title}
                       fill
                       className="object-cover"
