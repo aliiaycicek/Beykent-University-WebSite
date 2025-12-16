@@ -4,14 +4,9 @@ import { useState } from 'react';
 'use client';
 
 import { useState } from 'react';
-import FAQItem from '../components/FAQItem';
+import FAQItem from '../components/FAQItem'; // FAQItem dosyasının aynı klasörde veya components altında olduğu varsayılmıştır. Yolunu projenize göre (örn: '../components/FAQItem') düzeltebilirsiniz.
 
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
-
+// Veri yapısı için Tip Tanımlaması
 interface FAQ {
   id: number;
   question: string;
@@ -52,12 +47,14 @@ export default function FAQSection() {
     },
   ];
 
+  // State'in number veya null olabileceğini belirtiyoruz
   const [openItemId, setOpenItemId] = useState<number | null>(null);
 
   const handleToggle = (id: number) => {
     setOpenItemId(openItemId === id ? null : id);
   };
 
+  // State'in number veya null olabileceğini belirtiyoruz
   const [openItemId, setOpenItemId] = useState<number | null>(null);
 
   const handleToggle = (id: number) => {
@@ -66,18 +63,20 @@ export default function FAQSection() {
 
   return (
     <section className="py-16 bg-white w-full">
+      {/* Figma Genişlik Ayarı: max-w-[1306px] 
+        Bu container içeriği ortalar ve 1306px'e kadar genişlemesine izin verir.
+      */}
       <div className="w-full max-w-[1306px] mx-auto px-4 md:px-0">
-        <h2 className="text-4xl lg:text-6xl font-semibold mb-4 text-center text-gray-800 font-roboto">
-    <section className="py-16 bg-white w-full">
-      <div className="w-full max-w-[1306px] mx-auto px-4 md:px-0">
+        {/* Başlık Alanı - Font Roboto eklendi */}
         <h2 className="text-4xl lg:text-6xl font-semibold mb-4 text-center text-gray-800 font-roboto">
           Sıkça Sorulan Sorular
         </h2>
-        <p className="text-2xl lg:text-4xl font-medium mb-12 text-center text-gray-600 font-roboto">
+
         <p className="text-2xl lg:text-4xl font-medium mb-12 text-center text-gray-600 font-roboto">
           Merak ettiğiniz konulara yanıt bulun veya bizimle iletişime geçin
         </p>
-        <div className="flex flex-col gap-6">
+
+        {/* FAQ Itemları Listesi */}
         <div className="flex flex-col gap-6">
           {faqs.map(faq => (
             <FAQItem
