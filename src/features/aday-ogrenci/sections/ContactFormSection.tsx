@@ -42,7 +42,7 @@ export default function ContactFormSection() {
             </div>
           </div>
 
-          <h4 className="text-2xl font-medium mb-6">Kişisel Bilgilerr</h4>
+          <h4 className="text-2xl font-medium mb-6">Kişisel Bilgiler</h4>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
