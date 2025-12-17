@@ -19,16 +19,25 @@ export default function ContactFormSection() {
   return (
     <section className="py-16 bg-gradient-to-b from-[#009EE0] to-[#7348D9]">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl lg:text-6xl font-semibold text-white mb-4 text-center">
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold text-white mb-3 sm:mb-4 text-center"
+          style={{ fontFamily: 'Roboto Slab' }}
+        >
           İletişime Geçin
         </h2>
-        <p className="text-2xl lg:text-4xl font-medium text-white mb-12 text-center">
+        <p
+          className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium text-white mb-8 sm:mb-10 lg:mb-12 text-center"
+          style={{ fontFamily: 'Roboto' }}
+        >
           Sorularınız için bizimle iletişime geçin, size en kısa sürede dönüş
           yapalım
         </p>
 
         <div className="bg-white rounded-3xl p-8 lg:p-12 max-w-4xl mx-auto">
-          <h3 className="text-3xl lg:text-5xl font-medium text-center mb-8">
+          <h3
+            className="text-3xl lg:text-5xl font-medium text-center mb-8"
+            style={{ fontFamily: 'Roboto Slab' }}
+          >
             İletişim Formu
           </h3>
 
@@ -42,7 +51,12 @@ export default function ContactFormSection() {
             </div>
           </div>
 
-          <h4 className="text-2xl font-medium mb-6">Kişisel Bilgiler</h4>
+          <h4
+            className="text-2xl font-medium mb-6"
+            style={{ fontFamily: 'Roboto Slab' }}
+          >
+            Kişisel Bilgiler
+          </h4>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -52,6 +66,7 @@ export default function ContactFormSection() {
                   type="text"
                   placeholder="Ad"
                   className="bg-transparent flex-1 outline-none text-xl"
+                  style={{ fontFamily: 'Roboto' }}
                   value={formData.name}
                   onChange={e =>
                     setFormData({ ...formData, name: e.target.value })
@@ -64,6 +79,7 @@ export default function ContactFormSection() {
                   type="text"
                   placeholder="Soyad"
                   className="bg-transparent flex-1 outline-none text-xl"
+                  style={{ fontFamily: 'Roboto' }}
                   value={formData.surname}
                   onChange={e =>
                     setFormData({ ...formData, surname: e.target.value })
@@ -78,6 +94,7 @@ export default function ContactFormSection() {
                 type="email"
                 placeholder="E posta Adresiniz"
                 className="bg-transparent flex-1 outline-none text-xl"
+                style={{ fontFamily: 'Roboto' }}
                 value={formData.email}
                 onChange={e =>
                   setFormData({ ...formData, email: e.target.value })
@@ -91,6 +108,7 @@ export default function ContactFormSection() {
                 type="tel"
                 placeholder="0530 454 90 99"
                 className="bg-transparent flex-1 outline-none text-xl"
+                style={{ fontFamily: 'Roboto' }}
                 value={formData.phone}
                 onChange={e =>
                   setFormData({ ...formData, phone: e.target.value })
@@ -101,6 +119,7 @@ export default function ContactFormSection() {
             <button
               type="submit"
               className="w-full bg-[#B59DEF] rounded-2xl p-4 text-white text-2xl font-medium flex items-center justify-center gap-2"
+              style={{ fontFamily: 'Roboto' }}
             >
               Devam Et →
             </button>

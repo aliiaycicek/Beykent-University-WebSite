@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface Props {
   type: 'tanitim' | 'indirim' | 'mezun' | 'yokak';
 }
@@ -82,8 +84,13 @@ export default function InfoCard({ type }: Props) {
     yokak: (
       <div className="bg-gradient-to-r from-[#3613C3]/70 to-[#009EE0] border-4 border-[#007AFF] rounded-3xl p-6 shadow-xl">
         <div className="w-12 h-12 bg-[#FFDD00] rounded-full mb-4" />
-        <div className="bg-white rounded-2xl p-3 mb-4">
-          <div className="text-xs font-bold">YÖKAK Logo</div>
+        <div className="bg-white rounded-2xl p-3 mb-4 relative h-16">
+          <Image
+            src="/images/aday-ogrenci/yuksekogretim-kalite-kurulu-seeklogo-2 1.png"
+            alt="YÖKAK"
+            fill
+            className="object-contain"
+          />
         </div>
         <p className="text-white text-xs mb-2">İstanbul Beykent Üniversitesi</p>
         <h3 className="text-white font-bold text-sm mb-2">YÖKAK Kurumsal</h3>

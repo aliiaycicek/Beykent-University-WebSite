@@ -6,29 +6,35 @@ export default function CampusLifeSection() {
       id: 1,
       name: 'Beylikdüzü Yerleşkesi',
       desc: 'Geniş alanları ve modern olanaklarıyla öğrencilere huzurlu ve verimli bir eğitim ortamı sunuyor.',
-      image: '/images/aday-ogrenci/campus-1.jpg',
+      image: '/images/aday-ogrenci/beylikdüzü yerleşkesi.jpg',
     },
     {
       id: 2,
       name: 'Öğrenci Külüpleri',
       desc: '105+ aktif kulüp ile sosyal yaşamın renkleri',
-      image: '/images/aday-ogrenci/campus-2.jpg',
+      image: '/images/aday-ogrenci/öğrenci-kulüpleri.jpg',
     },
     {
       id: 3,
       name: 'Labarotuvarlar',
       desc: 'En son teknoloji ile donatılmış araştırma merkezleri',
-      image: '/images/aday-ogrenci/campus-3.jpg',
+      image: '/images/aday-ogrenci/labratuar.jpg',
     },
   ];
 
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl lg:text-6xl font-semibold mb-4 text-center">
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold mb-3 sm:mb-4 text-center"
+          style={{ fontFamily: 'Roboto Slab' }}
+        >
           Kampüs Yaşamı
         </h2>
-        <p className="text-2xl lg:text-4xl font-medium mb-12 text-center">
+        <p
+          className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium mb-8 sm:mb-10 lg:mb-12 text-center"
+          style={{ fontFamily: 'Roboto' }}
+        >
           Beykent&apos;te eğitim sadece derslerin ötesinde, zengin sosyal yaşam
           ve deneyimlerle dolu
         </p>

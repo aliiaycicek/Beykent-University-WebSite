@@ -11,51 +11,57 @@ export default function FacultiesSection() {
       id: 1,
       name: 'Diş Hekimliği Fakültesi',
       programs: 3,
-      image: '/images/aday-ogrenci/faculty-1.jpg',
+      image: '/images/aday-ogrenci/dıs-hekımlıgı.png',
     },
     {
       id: 2,
       name: 'Fen - Edebiyat Fakültesi',
       programs: 11,
-      image: '/images/aday-ogrenci/faculty-2.jpg',
+      image: '/images/aday-ogrenci/fen-edebiyat.jpg',
     },
     {
       id: 3,
       name: 'Güzel Sanatlar Fakültesi',
       programs: 8,
-      image: '/images/aday-ogrenci/faculty-3.jpg',
+      image: '/images/aday-ogrenci/guzel-sanatlar.jpg',
     },
     {
       id: 4,
       name: 'Mühendislik - Mimarlık Fakültesi',
       programs: 15,
-      image: '/images/aday-ogrenci/faculty-4.jpg',
+      image: '/images/aday-ogrenci/muhendislik-mimarlık.jpg',
     },
     {
       id: 5,
       name: 'Sağlık Bilimleri Fakültesi',
       programs: 6,
-      image: '/images/aday-ogrenci/faculty-5.jpg',
+      image: '/images/aday-ogrenci/saglık-bılımlerı.png',
     },
     {
       id: 6,
       name: 'İktisadi ve İdari Bilimler Fakültesi',
       programs: 17,
-      image: '/images/aday-ogrenci/faculty-6.jpg',
+      image: '/images/aday-ogrenci/ıkdısadı-ıdarı.jpg',
     },
   ];
 
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl lg:text-6xl font-semibold mb-4">
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold mb-3 sm:mb-4 text-center"
+          style={{ fontFamily: 'Roboto Slab' }}
+        >
           Bölümleri Keşfet
         </h2>
-        <p className="text-2xl lg:text-4xl font-medium mb-12">
+        <p
+          className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium mb-8 sm:mb-10 lg:mb-12 text-center"
+          style={{ fontFamily: 'Roboto' }}
+        >
           Tüm önlisans,lisans ve lisansüstü programları tek yerden keşfet
         </p>
 
-        <div className="flex flex-wrap gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 lg:mb-12">
           {['Önlisans', 'Lisans', 'Lisansüstü', 'Özel Yetenek'].map(prog => (
             <button
               key={prog}

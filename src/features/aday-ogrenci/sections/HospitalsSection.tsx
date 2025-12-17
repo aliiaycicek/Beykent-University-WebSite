@@ -15,11 +15,17 @@ export default function HospitalsSection() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="text-white">
-              <h2 className="text-4xl font-bold mb-6">
+              <h2
+                className="text-4xl font-bold mb-6"
+                style={{ fontFamily: 'Roboto Slab' }}
+              >
                 Beykent Üniversitesi Hastanesi
               </h2>
               <div className="w-40 h-40 rounded-full bg-white mb-6" />
-              <p className="text-3xl leading-relaxed">
+              <p
+                className="text-3xl leading-relaxed"
+                style={{ fontFamily: 'Roboto' }}
+              >
                 Beykent Üniversitesi Hastanesi, yüksek kalitede sağlık hizmeti
                 sunmak amacıyla; tıp teknolojisinin son ürünü olan en gelişmiş
                 cihazları, güçlü altyapısı, uzman kadrosu, kent içinde ulaşım
@@ -30,11 +36,17 @@ export default function HospitalsSection() {
             </div>
 
             <div className="text-white border-l-4 border-white pl-12">
-              <h2 className="text-4xl font-bold mb-6">
+              <h2
+                className="text-4xl font-bold mb-6"
+                style={{ fontFamily: 'Roboto Slab' }}
+              >
                 Beykent Üniversitesi Diş Hastanesi
               </h2>
               <div className="w-40 h-40 rounded-full bg-white mb-6" />
-              <p className="text-3xl leading-relaxed">
+              <p
+                className="text-3xl leading-relaxed"
+                style={{ fontFamily: 'Roboto' }}
+              >
                 İstanbul Beykent Üniversitesi Diş Hastanesi; nitelikli hekim
                 kadrosu, son güncel teknolojik cihazları, güçlü medikal
                 altyapısı, kent içinde ulaşım kolaylığı sağlayan lokasyonu ile

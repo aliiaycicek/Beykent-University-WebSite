@@ -42,10 +42,16 @@ export default function ImportantDatesSection() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl lg:text-6xl font-semibold mb-4 text-center">
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-semibold mb-3 sm:mb-4 text-center"
+          style={{ fontFamily: 'Roboto Slab' }}
+        >
           Önemli Tarihler
         </h2>
-        <p className="text-2xl lg:text-4xl font-medium mb-12 text-center">
+        <p
+          className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-medium mb-8 sm:mb-10 lg:mb-12 text-center"
+          style={{ fontFamily: 'Roboto' }}
+        >
           Akademik takvim ve başvuru süreçlerini takip edin
         </p>
 

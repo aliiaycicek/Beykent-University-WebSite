@@ -1,8 +1,7 @@
 import type { MenuItem } from './types';
 
 const MENU: MenuItem[] = [
-  { label: 'Beykent Hakkında', href: '/beykent-hakkinda' },
-  { label: 'Haberler', href: '/haberler' },
+  { label: 'Üniversitemiz', href: '/universitemiz' },
   { label: 'Akademik', href: '/akademik' },
   { label: 'Öğrenci', href: '/ogrenci' },
   { label: 'Uluslararası', href: '/uluslararasi' },
@@ -10,20 +9,26 @@ const MENU: MenuItem[] = [
 
 export default function HeaderNav() {
   return (
-    <nav className="flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-10 text-base lg:text-xl font-bold w-full lg:w-auto">
+    <nav className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 lg:gap-10 xl:gap-12">
       {MENU.map(item => (
         <a
           key={item.label}
           href={item.href}
-          className="hover:opacity-80 transition-opacity"
+          className="hover:opacity-80 transition-opacity whitespace-nowrap text-white text-center uppercase"
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: '16px',
+            fontWeight: 700,
+            lineHeight: 'normal',
+          }}
         >
           {item.label}
         </a>
       ))}
 
-      <div className="flex gap-3 mt-2 lg:mt-0">
-        <button className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-yellow-400/20 hover:bg-yellow-400/30 transition-colors" />
-        <button className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-yellow-400/20 hover:bg-yellow-400/30 transition-colors" />
+      <div className="flex gap-2 sm:gap-3">
+        <button className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-[12px] bg-[#F4C400]/20 hover:bg-[#F4C400]/30 transition-colors border border-[#F4C400]/30" />
+        <button className="w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-[12px] bg-[#F4C400]/20 hover:bg-[#F4C400]/30 transition-colors border border-[#F4C400]/30" />
       </div>
     </nav>
   );

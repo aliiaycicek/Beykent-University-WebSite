@@ -7,12 +7,16 @@ interface Props {
 
 export default function HeaderButton({ label, variant = 'default' }: Props) {
   const base =
-    'h-10 sm:h-12 lg:h-[50px] px-4 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm uppercase flex items-center justify-center transition-colors';
+    'h-10 sm:h-12 lg:h-[52px] px-4 sm:px-6 lg:px-8 rounded-[20px] font-bold text-xs sm:text-sm lg:text-base uppercase flex items-center justify-center transition-colors whitespace-nowrap';
 
   const styles =
     variant === 'light'
-      ? 'bg-white/70 text-[#3D2673] hover:bg-white'
-      : 'bg-yellow-400/10 text-white hover:bg-yellow-400/20';
+      ? 'bg-white/90 text-[#3D2673] hover:bg-white'
+      : 'bg-[#F4C400]/20 text-white hover:bg-[#F4C400]/30 border border-[#F4C400]/30';
 
-  return <button className={`${base} ${styles}`}>{label}</button>;
+  return (
+    <button className={`${base} ${styles}`} style={{ fontFamily: 'Roboto' }}>
+      {label}
+    </button>
+  );
 }

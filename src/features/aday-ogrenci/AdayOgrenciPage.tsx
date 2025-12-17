@@ -1,5 +1,4 @@
 import HeroSection from './sections/HeroSection';
-import InfoCardsSection from './sections/InfoCardsSection';
 import ProgramSearchSection from './sections/ProgramSearchSection';
 import FacultiesSection from './sections/FacultiesSection';
 import TestimonialsSection from './sections/TestimonialsSection';
@@ -13,7 +12,6 @@ export default function AdayOgrenciPage() {
   return (
     <div className="min-h-screen bg-[#F6F7FB]">
       <HeroSection />
-      <InfoCardsSection />
       <ProgramSearchSection />
       <FacultiesSection />
       <TestimonialsSection />
