@@ -23,9 +23,6 @@ export default function Header({ transparent = false }: HeaderProps) {
   }, []);
 
   // Ana sayfada şeffaf, scroll olunca veya diğer sayfalarda mor arka plan
-  const headerBackground =
-    transparent && !isScrolled ? 'transparent' : '#3D2673';
-
   const headerBackgroundStyle =
     transparent && !isScrolled ? {} : { background: '#3D2673' };
 

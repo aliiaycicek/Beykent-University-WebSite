@@ -1,41 +1,167 @@
-﻿import React from 'react';
+﻿'use client';
 
-const events = [
-  {
-    id: 1,
-    day: '15',
-    month: 'EYL',
-    title: '7. Uluslararasi Tarim, Biyoloji ve Yasam Bilimleri Konferansi',
-    time: '09.00-18.00',
-    location: 'Taksim Yerleskesi Adem Celik Amfisi',
-  },
-  {
-    id: 2,
-    day: '18',
-    month: 'EYL',
-    title: 'Girisimcilik ve Yenilik Haftasi Acilisi',
-    time: '10.00-16.30',
-    location: 'Beylikduzu Yerleskesi Konferans Salonu',
-  },
-  {
-    id: 3,
-    day: '21',
-    month: 'EYL',
-    title: 'Kariyer Zirvesi 2024',
-    time: '11.00-17.00',
-    location: 'Ayazaga Yerleskesi Cok Amacli Salon',
-  },
-  {
-    id: 4,
-    day: '25',
-    month: 'EYL',
-    title: 'Yapay Zeka ve Tasarim Atolyesi',
-    time: '13.00-19.00',
-    location: 'Hadimkoy Yerleskesi Studio 4',
-  },
-];
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+// Backend'den gelen event tipi
+type ApiEvent = {
+  id: string;
+  title: string;
+  date: string; // "2025-12-31T18:44:00"
+  photo?: string | null;
+  location?: string | null;
+  time?: string | null;
+};
+
+// UI'da kullanılacak event tipi
+type UiEvent = {
+  id: string;
+  title: string;
+  location: string;
+  time: string;
+  day: string;
+  month: string;
+};
+
+// Türkçe ay kısaltmaları
+function getTrMonthShort(monthIndex: number): string {
+  const months = [
+    'OCA',
+    'ŞUB',
+    'MAR',
+    'NİS',
+    'MAY',
+    'HAZ',
+    'TEM',
+    'AĞU',
+    'EYL',
+    'EKİ',
+    'KAS',
+    'ARA',
+  ];
+  return months[monthIndex] ?? '';
+}
+
+// Saat formatla: "18:44" -> "18.44"
+function formatTimeFromIso(iso: string): string {
+  const d = new Date(iso);
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  return `${hh}.${mm}`;
+}
+
+// Backend API URL
+const API_URL = 'https://localhost:7149/beykent/events';
 
 export default function EventsSection() {
+  const [events, setEvents] = useState<UiEvent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchEvents() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get<ApiEvent[]>(API_URL);
+
+        const uiEvents: UiEvent[] = (response.data ?? []).map(event => {
+          const date = new Date(event.date);
+
+          return {
+            id: event.id,
+            title: event.title,
+            day: String(date.getDate()),
+            month: getTrMonthShort(date.getMonth()),
+            location: event.location ?? 'Konum bilgisi yok',
+            time: event.time ?? formatTimeFromIso(event.date),
+          };
+        });
+
+        // Tarihe göre sırala
+        uiEvents.sort((a, b) => parseInt(a.day) - parseInt(b.day));
+
+        if (isMounted) {
+          setEvents(uiEvents);
+        }
+      } catch (err) {
+        console.error('Etkinlikler alınırken hata:', err);
+        if (isMounted) {
+          setError(
+            err instanceof Error ? err.message : 'Etkinlikler alınamadı'
+          );
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchEvents();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Loading durumu
+  if (loading) {
+    return (
+      <section className="bg-[#3D2673] py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold uppercase text-white">
+              Etkinlikler
+            </h2>
+            <p className="mt-3 text-base font-bold text-[#7F8080]">
+              Yükleniyor...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Hata durumu
+  if (error) {
+    return (
+      <section className="bg-[#3D2673] py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold uppercase text-white">
+              Etkinlikler
+            </h2>
+            <p className="mt-3 text-base font-bold text-red-400">
+              Hata: {error}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Etkinlik yok durumu
+  if (events.length === 0) {
+    return (
+      <section className="bg-[#3D2673] py-16">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold uppercase text-white">
+              Etkinlikler
+            </h2>
+            <p className="mt-3 text-base font-bold text-[#7F8080]">
+              Henüz etkinlik bulunmamaktadır.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="bg-[#3D2673] py-16">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,7 +170,7 @@ export default function EventsSection() {
             Etkinlikler
           </h2>
           <p className="mt-3 text-base font-bold text-[#7F8080]">
-            Yaklasan etkinliklerimizi kacirmayin
+            Yaklaşan etkinliklerimizi kaçırmayın
           </p>
         </div>
 
