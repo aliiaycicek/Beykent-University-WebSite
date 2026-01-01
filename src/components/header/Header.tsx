@@ -6,7 +6,11 @@ import HeaderNav from './HeaderNav';
 import HeaderActions from './HeaderActions';
 import HeaderLogo from './HeaderLogo';
 
-export default function Header() {
+interface HeaderProps {
+  transparent?: boolean; // Ana sayfada true, diğer sayfalarda false
+}
+
+export default function Header({ transparent = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,22 +22,48 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Ana sayfada şeffaf, scroll olunca veya diğer sayfalarda mor arka plan
+  const headerBackground =
+    transparent && !isScrolled ? 'transparent' : '#3D2673';
+
+  const headerBackgroundStyle =
+    transparent && !isScrolled ? {} : { background: '#3D2673' };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 w-full bg-[#3D2673] text-white transition-all duration-300 ${
-        isScrolled ? 'shadow-lg backdrop-blur-sm bg-[#3D2673]/95' : ''
+      className={`fixed top-0 left-0 right-0 z-50 w-full text-white transition-all duration-300 ${
+        isScrolled ? 'shadow-lg' : ''
       }`}
+      style={{
+        height: '164px',
+        ...headerBackgroundStyle,
+        backdropFilter: transparent && isScrolled ? 'blur(10px)' : undefined,
+      }}
     >
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* TOP BAR */}
-        <div className="flex items-center justify-between h-[60px] sm:h-[72px] border-b border-white/10">
+      <div className="relative max-w-[1440px] mx-auto h-full px-4 lg:px-0">
+        {/* Logo - Sol tarafta, Figma: left 115px, top 53px */}
+        <div className="absolute" style={{ left: '115px', top: '53px' }}>
           <HeaderLogo />
+        </div>
+
+        {/* Butonlar - Figma: left 503px, top 25px, gap 34px */}
+        <div
+          className="absolute hidden lg:block"
+          style={{ left: '503px', top: '25px' }}
+        >
+          <HeaderActions />
+        </div>
+
+        {/* Mod ve Dil ayarları - Sağ üst, Figma: right ~62px, top 35px */}
+        <div className="absolute" style={{ right: '62px', top: '35px' }}>
           <HeaderTop />
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="flex flex-col lg:flex-row items-center justify-between py-4 lg:h-[92px] gap-4 lg:gap-0">
-          <HeaderActions />
+        {/* Alt Navigasyon - Figma: left 605px, top 97px */}
+        <div
+          className="absolute hidden lg:block"
+          style={{ left: '605px', top: '97px' }}
+        >
           <HeaderNav />
         </div>
       </div>

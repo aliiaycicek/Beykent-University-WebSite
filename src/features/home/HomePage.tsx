@@ -14,7 +14,7 @@ import {
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#F6F7FB]">
-      <GlobalHeader />
+      <GlobalHeader transparent={true} />
       <HeroSection />
       <NewsAnnouncementsSection />
       <EventsSection />
