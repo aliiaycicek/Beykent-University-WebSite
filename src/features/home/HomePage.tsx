@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import { GlobalHeader } from '@/components/header';
 
 import {
   CampusesSection,
@@ -13,6 +14,7 @@ import {
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#F6F7FB]">
+      <GlobalHeader />
       <HeroSection />
       <NewsAnnouncementsSection />
       <EventsSection />

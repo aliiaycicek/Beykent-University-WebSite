@@ -14,6 +14,27 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const getPlainText = (html: string) => {
+    if (!html) return '';
+    if (typeof DOMParser === 'undefined') {
+      return html.replace(/<[^>]*>/g, '');
+    }
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  };
+
+  const resolvePhotoUrl = (
+    photo?: string,
+    fallback = '/images/figma/main-news.jpg'
+  ) => {
+    if (!photo) return fallback;
+    if (photo.startsWith('http') || photo.startsWith('/')) {
+      return photo;
+    }
+    return `/images/news/${photo}.jpg`;
+  };
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -78,6 +99,7 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
 
   const mainNews = news[0];
   const otherNews = news.slice(1);
+  const mainNewsDescription = getPlainText(mainNews.description);
 
   return (
     <section className={`py-16 bg-white ${className}`}>
@@ -134,7 +156,10 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-200">
               <div className="relative h-48 sm:h-64 lg:h-80">
                 <Image
-                  src={mainNews.photo}
+                  src={resolvePhotoUrl(
+                    mainNews.photo,
+                    '/images/figma/main-news.jpg'
+                  )}
                   alt={mainNews.title}
                   fill
                   className="object-cover"
@@ -151,7 +176,7 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
                   className="text-[14px] sm:text-[16px] text-[#000000] mb-3 sm:mb-4 leading-relaxed"
                   style={{ fontFamily: 'Roboto Slab, serif' }}
                 >
-                  {mainNews.description}
+                  {mainNewsDescription}
                 </p>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <Link
@@ -181,7 +206,10 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
               >
                 <div className="relative h-32 sm:h-40">
                   <Image
-                    src={newsItem.photo}
+                    src={resolvePhotoUrl(
+                      newsItem.photo,
+                      '/images/figma/news-1.jpg'
+                    )}
                     alt={newsItem.title}
                     fill
                     className="object-cover"
@@ -198,7 +226,7 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
                     className="text-[12px] sm:text-[12px] text-[#000000] mb-3 line-clamp-2"
                     style={{ fontFamily: 'Roboto Slab, serif' }}
                   >
-                    {newsItem.description}
+                    {getPlainText(newsItem.description)}
                   </p>
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                     <Link

@@ -13,12 +13,13 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/figma/hero-background.jpg"
-          alt="Beykent Üniversitesi Kampüsü"
+          src="/images/hero/hero-image.svg"
+          alt="Beykent Universitesi kampusu"
           fill
           className="object-cover object-center"
           priority
         />
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
       </div>
 
       {/* Hero Content */}
@@ -31,13 +32,13 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
                 className="block text-[32px] sm:text-[48px] lg:text-[64px] leading-[1.2] text-[#3D2673] font-black"
                 style={{ fontFamily: 'Roboto Slab, serif' }}
               >
-                Geleceğini Beykent&apos;te
+                Gelecegini Beykent&apos;te
               </span>
               <span
                 className="block text-[32px] sm:text-[48px] lg:text-[64px] leading-[1.2] text-[#3D2673] font-black"
                 style={{ fontFamily: 'Roboto Slab, serif' }}
               >
-                İnşa Et.
+                Insa Et.
               </span>
             </h1>
 
@@ -46,9 +47,9 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
               className="text-[14px] sm:text-[16px] leading-[1.4] max-w-[700px] mb-8 text-[#3D2673] font-bold"
               style={{ fontFamily: 'Roboto Slab, serif' }}
             >
-              30 yıllık deneyimi ile eğitimde öncü, geleceğe yön veren
-              üniversite. Modern eğitim yaklaşımı ve güçlü akademik kadrosu ile
-              öğrencilerimizi başarıya hazırlıyoruz.
+              30 yillik deneyimi ile egitimde oncu, gelecege yon veren
+              universite. Modern egitim yaklasimi ve guclu akademik kadrosu ile
+              ogrencilerimizi basariya hazirliyoruz.
             </p>
 
             {/* Buttons */}
@@ -61,7 +62,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
                   height: '50px',
                 }}
               >
-                Beykent&apos;i Keşfet
+                Beykent&apos;i Kesfet
               </button>
 
               <button
@@ -72,7 +73,7 @@ export default function HeroSection({ className = '' }: HeroSectionProps) {
                   height: '50px',
                 }}
               >
-                Bölümleri İncele
+                Bolumleri Incele
               </button>
             </div>
           </div>

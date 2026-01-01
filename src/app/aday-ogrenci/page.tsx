@@ -1,6 +1,6 @@
 import AdayOgrenciPage from '@/features/aday-ogrenci/AdayOgrenciPage';
 import FooterSection from '@/components/features/FooterSection';
-import { GlobalHeader } from '@/components/header';
+// Aday öğrenci sayfası kendi özel header'ını kullanır - GlobalHeader kullanılmaz
 
 export const metadata = {
   title: 'Aday Öğrenci - İstanbul Beykent Üniversitesi',
@@ -11,7 +11,7 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <GlobalHeader />
+      {/* Aday öğrenci sayfası kendi HeroSection içinde kendine özel header'ını kullanır */}
       <AdayOgrenciPage />
       <FooterSection />
     </>

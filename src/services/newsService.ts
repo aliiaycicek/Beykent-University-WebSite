@@ -1,17 +1,18 @@
 // News API Service
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5062/Beykent';
+  process.env.NEXT_PUBLIC_API_URL || 'https://localhost:7149';
+const NEWS_BASE_PATH = '/Beykent/News';
 
 export interface NewsItem {
-  id: string;
+  id: string | number;
   title: string;
   description: string;
-  photo: string;
-  category: string;
+  photo?: string;
+  category?: string | null;
   date: string;
   slug: string;
   state: number; // 1 = aktif, 0 = pasif
-  isMeslekYuksekokulu: boolean;
+  isMeslekYuksekokulu?: boolean;
   createDate?: string;
   updateDate?: string | null;
 }
@@ -20,11 +21,11 @@ export interface CreateNewsRequest {
   title: string;
   description: string;
   photo: string;
-  category: string;
+  category?: string;
   date: string;
   slug: string;
   state: number; // 1 = aktif, 0 = pasif
-  isMeslekYuksekokulu: boolean;
+  isMeslekYuksekokulu?: boolean;
 }
 
 export interface UpdateNewsRequest extends CreateNewsRequest {
@@ -62,17 +63,17 @@ class NewsService {
 
   // Get all news
   async getAllNews(): Promise<NewsItem[]> {
-    return this.request<NewsItem[]>('/News');
+    return this.request<NewsItem[]>(NEWS_BASE_PATH);
   }
 
   // Get news by ID
   async getNewsById(id: string): Promise<NewsItem> {
-    return this.request<NewsItem>(`/News/${id}`);
+    return this.request<NewsItem>(`${NEWS_BASE_PATH}/${id}`);
   }
 
   // Create new news (Admin only)
   async createNews(news: CreateNewsRequest): Promise<NewsItem> {
-    return this.request<NewsItem>('/News', {
+    return this.request<NewsItem>(NEWS_BASE_PATH, {
       method: 'POST',
       body: JSON.stringify(news),
     });
@@ -80,7 +81,7 @@ class NewsService {
 
   // Update news (Admin only)
   async updateNews(id: string, news: UpdateNewsRequest): Promise<NewsItem> {
-    return this.request<NewsItem>(`/News/${id}`, {
+    return this.request<NewsItem>(`${NEWS_BASE_PATH}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(news),
     });
@@ -88,7 +89,7 @@ class NewsService {
 
   // Delete news (Admin only)
   async deleteNews(id: string): Promise<void> {
-    return this.request<void>(`/News/${id}`, {
+    return this.request<void>(`${NEWS_BASE_PATH}/${id}`, {
       method: 'DELETE',
     });
   }
@@ -102,7 +103,9 @@ class NewsService {
   // Get news by state
   async getActiveNews(): Promise<NewsItem[]> {
     const allNews = await this.getAllNews();
-    return allNews.filter(news => news.state === 1);
+    return allNews
+      .filter(news => news.state === 1)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   // Search news
@@ -114,7 +117,7 @@ class NewsService {
       news =>
         news.title.toLowerCase().includes(lowercaseQuery) ||
         news.description.toLowerCase().includes(lowercaseQuery) ||
-        news.category.toLowerCase().includes(lowercaseQuery)
+        (news.category || '').toLowerCase().includes(lowercaseQuery)
     );
   }
 }
