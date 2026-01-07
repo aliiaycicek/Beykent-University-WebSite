@@ -44,6 +44,7 @@ class NewsService {
         ...options.headers,
       },
       ...options,
+      cache: 'no-store',
     };
 
     try {

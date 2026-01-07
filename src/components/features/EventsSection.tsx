@@ -3,8 +3,10 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { eventService } from '@/services/eventService';
+
 interface Event {
-  id: number;
+  id: string;
   title: string;
   location: string;
   date: string;
@@ -19,7 +21,7 @@ interface EventsSectionProps {
 
 const mockEvents: Event[] = [
   {
-    id: 1,
+    id: '1',
     title: '7. Uluslararası Tarım, Biyoloji ve Yaşam Bilimleri Konferansı',
     location: 'Taksim Yerleşkesi Adem Çelik Amfisi',
     date: '15 EYL',
@@ -28,7 +30,7 @@ const mockEvents: Event[] = [
     month: 'EYL',
   },
   {
-    id: 2,
+    id: '2',
     title: '7. Uluslararası Tarım, Biyoloji ve Yaşam Bilimleri Konferansı',
     location: 'Taksim Yerleşkesi Adem Çelik Amfisi',
     date: '15 EYL',
@@ -37,7 +39,7 @@ const mockEvents: Event[] = [
     month: 'EYL',
   },
   {
-    id: 3,
+    id: '3',
     title: '7. Uluslararası Tarım, Biyoloji ve Yaşam Bilimleri Konferansı',
     location: 'Taksim Yerleşkesi Adem Çelik Amfisi',
     date: '15 EYL',
@@ -46,7 +48,7 @@ const mockEvents: Event[] = [
     month: 'EYL',
   },
   {
-    id: 4,
+    id: '4',
     title: '7. Uluslararası Tarım, Biyoloji ve Yaşam Bilimleri Konferansı',
     location: 'Taksim Yerleşkesi Adem Çelik Amfisi',
     date: '15 EYL',
@@ -57,6 +59,60 @@ const mockEvents: Event[] = [
 ];
 
 export default function EventsSection({ className = '' }: EventsSectionProps) {
+  const [events, setEvents] = React.useState<Event[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        const apiEvents = await eventService.getActiveEvents();
+
+        // Map API events to UI Event format
+        const mappedEvents: Event[] = apiEvents.map(item => {
+          const dateDate = new Date(item.date);
+          const monthNames = [
+            'OCAK',
+            'ŞUB',
+            'MART',
+            'NİSAN',
+            'MAYIS',
+            'HAZ',
+            'TEM',
+            'AĞUS',
+            'EYL',
+            'EKİM',
+            'KAS',
+            'ARAL',
+          ];
+
+          return {
+            id: item.id,
+            title: item.title,
+            location: item.location || 'Kampüs', // Placeholder if missing
+            date: `${dateDate.getDate()} ${monthNames[dateDate.getMonth()]}`,
+            time: dateDate.toLocaleTimeString('tr-TR', {
+              hour: '2-digit',
+              minute: '2-digit',
+            }),
+            day: dateDate.getDate(),
+            month: monthNames[dateDate.getMonth()],
+          };
+        });
+
+        setEvents(mappedEvents.slice(0, 4));
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  if (loading) return null; // Or loading spinner
+
   return (
     <section className={`py-16 bg-[#3D2673] ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,7 +134,7 @@ export default function EventsSection({ className = '' }: EventsSectionProps) {
 
         {/* Events Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-          {mockEvents.map(event => (
+          {events.map(event => (
             <div
               key={event.id}
               className="bg-white rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"

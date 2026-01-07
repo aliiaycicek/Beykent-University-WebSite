@@ -4,6 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { newsService, NewsItem } from '@/services/newsService';
+import {
+  announcementService,
+  AnnouncementItem,
+} from '@/services/announcementService';
+
+// Unified item type for display
+interface DisplayItem extends NewsItem {
+  isAnnouncement?: boolean;
+}
 
 interface NewsSectionProps {
   className?: string;
@@ -11,25 +20,48 @@ interface NewsSectionProps {
 
 export default function NewsSection({ className = '' }: NewsSectionProps) {
   const [activeTab, setActiveTab] = useState<'news' | 'announcements'>('news');
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [items, setItems] = useState<DisplayItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const apiNews = await newsService.getActiveNews();
-        setNews(apiNews.slice(0, 5)); // İlk 5 haberi al
+        let data: DisplayItem[] = [];
+
+        if (activeTab === 'news') {
+          const apiNews = await newsService.getActiveNews();
+          data = apiNews.map(item => ({ ...item, isAnnouncement: false }));
+        } else {
+          const apiAnnouncements =
+            await announcementService.getActiveAnnouncements();
+          // Map announcements to match DisplayItem (NewsItem-like) structure
+          data = apiAnnouncements.map(item => ({
+            ...item,
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            photo: '/images/beykent-logo.png', // Default placeholder for announcements
+            category: 'Duyuru',
+            date: item.date,
+            slug: item.slug,
+            state: item.state,
+            isMeslekYuksekokulu: false, // Default
+            isAnnouncement: true,
+          }));
+        }
+
+        setItems(data.slice(0, 5));
       } catch (error) {
-        console.error('Error fetching news:', error);
-        setNews([]);
+        console.error('Error fetching data:', error);
+        setItems([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchNews();
-  }, []);
+    fetchData();
+  }, [activeTab]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -53,7 +85,7 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
     );
   }
 
-  if (news.length === 0) {
+  if (items.length === 0) {
     return (
       <section className={`py-16 bg-white ${className}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,8 +108,8 @@ export default function NewsSection({ className = '' }: NewsSectionProps) {
     );
   }
 
-  const mainNews = news[0];
-  const otherNews = news.slice(1);
+  const mainNews = items[0];
+  const otherNews = items.slice(1);
 
   return (
     <section className={`py-16 bg-white ${className}`}>
