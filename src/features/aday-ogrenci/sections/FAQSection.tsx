@@ -1,12 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-'use client';
+import FAQItem from '../components/FAQItem';
 
-import { useState } from 'react';
-import FAQItem from '../components/FAQItem'; // FAQItem dosyasının aynı klasörde veya components altında olduğu varsayılmıştır. Yolunu projenize göre (örn: '../components/FAQItem') düzeltebilirsiniz.
-
-// Veri yapısı için Tip Tanımlaması
 interface FAQ {
   id: number;
   question: string;
@@ -47,14 +43,6 @@ export default function FAQSection() {
     },
   ];
 
-  // State'in number veya null olabileceğini belirtiyoruz
-  const [openItemId, setOpenItemId] = useState<number | null>(null);
-
-  const handleToggle = (id: number) => {
-    setOpenItemId(openItemId === id ? null : id);
-  };
-
-  // State'in number veya null olabileceğini belirtiyoruz
   const [openItemId, setOpenItemId] = useState<number | null>(null);
 
   const handleToggle = (id: number) => {
